@@ -42,7 +42,9 @@ logger_name = "execute_func_main"
 def execute_func_args_kwargs(func_payload_dict):
     """ This function takes the func_payload_dict, which contains the functiona name and params for child/function-to-execute"""
     try:
-        func_path = func_payload_dict.get('func_name')
+        func_path = func_payload_dict.get('func_name',None)
+        if not func_path: raise Exception("Invalid or Missing Function Name to call")
+        
         args = func_payload_dict.get('func_args',[])
         kwargs = func_payload_dict.get('func_kwargs',{})
 
